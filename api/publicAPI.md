@@ -529,6 +529,53 @@ Toutes les routes nécessitent une clé API (`Authorization` header sous la form
   - 404 : Conversation ou données non trouvées.
   - 500 : Erreur interne du serveur.
 
+#### Récupérer les messages d'une conversation
+- **URL** : `GET /v1/conversations/:id/messages`
+- **Paramètres** :
+  - `id` : Identifiant unique de la conversation (CUID).
+- **Description** : Récupère les messages d'une conversation spécifique.
+- **Réponse** :
+  ```json
+  {
+    "success": true,
+    "data": [
+      {
+        "id": "string",
+        "date": "timestamp",
+        "message": "string",
+        "role": "string",
+        "model": "string",
+        "score": "number",
+      }
+    ]
+  }
+  ```
+- **Erreurs possibles** :
+  - 400 : Requête invalide.
+  - 403 : Accès non autorisé.
+  - 404 : Conversation non trouvée.
+  - 500 : Erreur interne du serveur.
+
+#### Supprimer un message d'une conversation
+- **URL** : `DELETE /v1/conversations/message/:id`
+- **Paramètres** :
+  - `id` : Identifiant unique du message.
+- **Description** : Supprime un message d'une conversation.
+- **Réponse** :
+  ```json
+  {
+    "success": true,
+    "data": {
+      "message": "string"
+    }
+  }
+  ```
+- **Erreurs possibles** :
+  - 400 : Requête invalide.
+  - 403 : Accès non autorisé.
+  - 404 : Message non trouvé.
+  - 500 : Erreur interne du serveur.
+
 ---
 
 ### **v1/files**
@@ -552,9 +599,6 @@ Toutes les routes nécessitent une clé API (`Authorization` header sous la form
 - **Erreurs possibles** :
   - 400 : Aucun fichier téléchargé.
   - 500 : Erreurs internes (extraction de texte, génération des embeddings).
-
-
-#### Récupérer les fichiers sur une base de connaissances
 
 ---
 
